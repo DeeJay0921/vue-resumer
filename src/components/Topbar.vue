@@ -4,17 +4,18 @@
       VueResumer
     </div>
     <div class="actions">
-      <button>注册</button>
-      <button>登录</button>
+      <el-button type="primary">注册</el-button>
+      <el-button>登录</el-button>
     </div>
   </div>
 </template>
 <style lang="scss">
   #topbar {
-    border: 1px solid green;
     min-height: 100px;
     display: flex;
     justify-content: space-between;
     padding: 16px;
+    font-size: 20px;
+    align-items: center;
   }
 </style>
