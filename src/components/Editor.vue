@@ -12,22 +12,59 @@
       </ol>
     </nav>
     <ol class="panes">
-      <li v-bind:class="{active: currentTab === 0}">tab 1</li>
-      <li v-bind:class="{active: currentTab === 1}">tab 2</li>
-      <li v-bind:class="{active: currentTab === 2}">tab 3</li>
-      <li v-bind:class="{active: currentTab === 3}">tab 4</li>
-      <li v-bind:class="{active: currentTab === 4}">tab 5</li>
-      <li v-bind:class="{active: currentTab === 5}">tab 6</li>
+      <li v-bind:class="{active: currentTab === 0}">
+        <ProfileEditor v-bind:profile="profile"></ProfileEditor>
+      </li>
+      <li v-bind:class="{active: currentTab === 1}">
+        <WorkExperienceEditor v-bind:workExperience="workExperience"></WorkExperienceEditor>
+      </li>
+      <li v-bind:class="{active: currentTab === 2}">
+        <h2>学习经历</h2>
+      </li>
+      <li v-bind:class="{active: currentTab === 3}">
+        <h2>项目经验</h2>
+      </li>
+      <li v-bind:class="{active: currentTab === 4}">
+        <h2>获奖情况</h2>
+      </li>
+      <li v-bind:class="{active: currentTab === 5}">
+        <h2>联系方式</h2>
+      </li>
     </ol>
   </div>
 </template>
 <script>
+  import ProfileEditor from './ProfileEditor.vue'
+  import WorkExperienceEditor from './WorkExperienceEditor.vue'
   export default {
+    components: {
+      ProfileEditor,WorkExperienceEditor
+    },
     data() {
       return {
         currentTab: 0,
-        icons: ['IDcard','work','book','xiangmu','huojiangzuopin','phone']
+        icons: ['IDcard','work','book','xiangmu','huojiangzuopin','phone'],
+        profile: {
+          name: '',
+          city: '',
+          birth: ''
+        },
+        workExperience: [
+          {
+            company:'',
+            content:''
+          }
+        ]
       }
+    },
+    created() {
+      console.log(this.profile);
+      setTimeout(()=>{
+        console.log(this.profile)
+      },5000)
+    },
+    methods: {
+
     }
   }
 </script>
@@ -35,6 +72,7 @@
 <style lang="scss">
   #editor {
     min-height: 100px;
+    display: flex;
     > nav {
       background: black;
       width: 80px;
@@ -49,16 +87,27 @@
           fill: white;
     }
       & > nav  .active {
-          transition: all .5s;
+          transition: all .8s;
           background: white;
         > .icon {
             fill: black;
           }
        }
       > .panes {
+        flex: 1;
+        .container {
+          position: relative;
+        }
+        .container .el-icon-circle-close {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
            li {
               display: none;
-
+              padding: 32px;
+             max-height: 100%;
+             overflow: auto;
             }
         }
     & .panes .active {
