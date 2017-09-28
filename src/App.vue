@@ -100,12 +100,12 @@
     right: 2em;
     top: 1em;
   }
-  main {
+  #app main {
     display: flex;
     flex: 1;
     background: rgba(205, 215, 252, 0.81)
   }
-  main .editor {
+  #app main .editor {
     width: 45em;
     margin: 16px 8px 16px 16px;
     background: #fff;
@@ -113,7 +113,7 @@
     border-radius: 5px;
     overflow: hidden;
   }
-  main .preview {
+  #app main .preview {
     flex: 1;
     margin: 16px 16px 16px 8px;
     background: #fff;
