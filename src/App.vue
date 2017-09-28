@@ -1,10 +1,11 @@
 <template>
-  <div id="app">
-    <Topbar class="topbar"></Topbar>
+  <div id="app" v-bind:class="{activePreview: previewMode}">
+    <Topbar class="topbar" v-on:appListenPreview="appDealPreview"></Topbar>
     <main>
       <Editor v-bind:resume="resume" class="editor"></Editor><!--传给editor数据-->
       <Preview v-bind:resume="resume" class="preview"></Preview>
     </main>
+    <el-button id="exit" v-on:click="exitPreview">退出预览</el-button>
   </div>
 </template>
 
@@ -13,12 +14,14 @@
   import Editor from './components/Editor.vue'
   import Preview from './components/Preview.vue'
 
+
   export default {
     components: {
       Topbar,Editor,Preview
     },
     data() { //在data()中存放数据，以便editor和preview使用
       return {
+        previewMode: false,
         resume: {
           profile: {
             name: '',
@@ -47,6 +50,15 @@
             phone: ''
           }
         }
+      }
+    },
+    methods: {
+      appDealPreview() {
+        this.previewMode = true;
+        console.log(this.previewMode)
+      },
+      exitPreview() {
+        this.previewMode = false;
       }
     }
   }
@@ -79,13 +91,22 @@
     position: relative;
     z-index: 1;
   }
+  #exit {
+    display: none;
+  }
+  .activePreview #exit {
+    display: inline-block;
+    position: fixed;
+    right: 2em;
+    top: 1em;
+  }
   main {
     display: flex;
     flex: 1;
     background: rgba(205, 215, 252, 0.81)
   }
   main .editor {
-    width: 40em;
+    width: 45em;
     margin: 16px 8px 16px 16px;
     background: #fff;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
@@ -98,5 +119,16 @@
     background: #fff;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     border-radius: 5px;
+  }
+  .activePreview #topbar {
+    display: none;
+  }
+  .activePreview main #editor {
+    display: none;
+  }
+  .activePreview main #preview {
+    max-width: 760px;
+    margin: 2em auto;
+    overflow: auto;
   }
 </style>

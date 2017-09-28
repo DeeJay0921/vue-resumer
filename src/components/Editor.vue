@@ -30,6 +30,7 @@
       <li v-bind:class="{active: currentTab === 5}">
         <ContactsEditor v-bind:contacts="resume.contacts"></ContactsEditor>
       </li>
+
     </ol>
   </div>
 </template>
@@ -50,7 +51,7 @@
     },
     methods: {
 
-    }
+    },
   }
 </script>
 
