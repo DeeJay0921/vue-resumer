@@ -13,63 +13,39 @@
     </nav>
     <ol class="panes">
       <li v-bind:class="{active: currentTab === 0}">
-        <InfoEditor v-bind:info="profile" v-bind:labels="{name:'姓名',city:'城市',birth:'出生年月'}" v-bind:title="`个人信息`"></InfoEditor>
+        <ProfileEditor v-bind:profile="resume.profile"></ProfileEditor>
       </li>
       <li v-bind:class="{active: currentTab === 1}">
-        <ExpEditor v-bind:exps="workExperience" v-bind:labels="{company:'公司名称',content:'工作内容'}" v-bind:title="`工作经历`"></ExpEditor>
+        <ExpEditor v-bind:exps="resume.workExperience" v-bind:labels="{company:'公司名称',content:'工作内容'}" v-bind:title="`工作经历`"></ExpEditor>
       </li>
       <li v-bind:class="{active: currentTab === 2}">
-        <ExpEditor v-bind:exps="studyExperience" v-bind:labels="{school:'学校',duration:'时间',degree:'学位'}" v-bind:title="`学习经历`"></ExpEditor>
+        <ExpEditor v-bind:exps="resume.studyExperience" v-bind:labels="{school:'学校',duration:'时间',degree:'学位'}" v-bind:title="`学习经历`"></ExpEditor>
       </li>
       <li v-bind:class="{active: currentTab === 3}">
-        <ExpEditor v-bind:exps="projectExperience" v-bind:labels="{name:'项目名称',content:'项目内容'}" v-bind:title="`项目经验`"></ExpEditor>
+        <ExpEditor v-bind:exps="resume.projectExperience" v-bind:labels="{name:'项目名称',content:'项目内容'}" v-bind:title="`项目经验`"></ExpEditor>
       </li>
       <li v-bind:class="{active: currentTab === 4}">
-        <ExpEditor v-bind:exps="awardExperience" v-bind:labels="{name:'奖励详情'}" v-bind:title="`获奖情况`"></ExpEditor>
+        <ExpEditor v-bind:exps="resume.awardExperience" v-bind:labels="{name:'奖励详情'}" v-bind:title="`获奖情况`"></ExpEditor>
       </li>
       <li v-bind:class="{active: currentTab === 5}">
-        <InfoEditor v-bind:info="contacts" v-bind:labels="{qq:'QQ',wechat:'微信',email:'邮箱',phone:'手机号码'}" v-bind:title="`联系方式`"></InfoEditor>
+        <ContactsEditor v-bind:contacts="resume.contacts"></ContactsEditor>
       </li>
     </ol>
   </div>
 </template>
 <script>
-  import InfoEditor from './InfoEditor.vue'
+  import ProfileEditor from './ProfileEditor.vue'
   import ExpEditor from './ExpEditor.vue'
+  import ContactsEditor from './ContactsEditor.vue'
   export default {
     components: {
-      InfoEditor,ExpEditor
+      ProfileEditor,ExpEditor,ContactsEditor
     },
+    props: ['resume'],
     data() {
       return {
         currentTab: 0,
         icons: ['IDcard','work','book','xiangmu','huojiangzuopin','phone'],
-        profile: {
-          name: '',
-          city: '',
-          birth: ''
-        },
-        workExperience: [
-          {
-            company:'',
-            content:''
-          }
-        ],
-        studyExperience: [
-          {school:'',duration:'',degree:''}
-        ],
-        projectExperience: [
-          {name: '',content:''}
-        ],
-        awardExperience: [
-          {name: ''}
-        ],
-        contacts: {
-          qq: '',
-          wechat: '',
-          email:'',
-          phone: ''
-        }
       }
     },
     methods: {

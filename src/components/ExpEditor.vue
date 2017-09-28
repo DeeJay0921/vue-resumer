@@ -4,7 +4,7 @@
     <el-form>
       <div v-for="(exp,index) in exps" class="container">
         <el-form-item v-for="key in keys" v-bind:label="labels[key] || key" v-bind:key="key">
-          <el-input v-model="exps[key]"></el-input>
+          <el-input v-model="exp[key]"></el-input>
         </el-form-item>
         <i class="el-icon-circle-close" v-on:click="removeExp(index)"></i>
       </div>
@@ -19,7 +19,7 @@
       addExp() {
         const empty = {}
         this.keys.map( (key)=> {
-          empty[key] = {}
+          empty[key] = ''
         })
 //        this.exps.push({school:'',duration:'',degree:''})
         this.exps.push(empty)

@@ -2,8 +2,8 @@
   <div id="app">
     <Topbar class="topbar"></Topbar>
     <main>
-      <Editor class="editor"></Editor>
-      <Preview class="preview"></Preview>
+      <Editor v-bind:resume="resume" class="editor"></Editor><!--传给editor数据-->
+      <Preview v-bind:resume="resume" class="preview"></Preview>
     </main>
   </div>
 </template>
@@ -16,6 +16,38 @@
   export default {
     components: {
       Topbar,Editor,Preview
+    },
+    data() { //在data()中存放数据，以便editor和preview使用
+      return {
+        resume: {
+          profile: {
+            name: '',
+            city: '',
+            birth: ''
+          },
+          workExperience: [
+            {
+              company:'',
+              content:''
+            }
+          ],
+          studyExperience: [
+            {school:'',duration:'',degree:''}
+          ],
+          projectExperience: [
+            {name: '',content:''}
+          ],
+          awardExperience: [
+            {name: ''}
+          ],
+          contacts: {
+            qq: '',
+            wechat: '',
+            email:'',
+            phone: ''
+          }
+        }
+      }
     }
   }
 </script>
