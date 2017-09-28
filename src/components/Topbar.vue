@@ -33,5 +33,8 @@
     padding: 16px;
     font-size: 20px;
     align-items: center;
+    .actions button {
+      margin-right: 5em;
+    }
   }
 </style>
