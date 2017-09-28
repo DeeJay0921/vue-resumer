@@ -13,32 +13,32 @@
     </nav>
     <ol class="panes">
       <li v-bind:class="{active: currentTab === 0}">
-        <ProfileEditor v-bind:profile="profile"></ProfileEditor>
+        <InfoEditor v-bind:info="profile" v-bind:labels="{name:'姓名',city:'城市',birth:'出生年月'}" v-bind:title="`个人信息`"></InfoEditor>
       </li>
       <li v-bind:class="{active: currentTab === 1}">
-        <WorkExperienceEditor v-bind:workExperience="workExperience"></WorkExperienceEditor>
+        <ExpEditor v-bind:exps="workExperience" v-bind:labels="{company:'公司名称',content:'工作内容'}" v-bind:title="`工作经历`"></ExpEditor>
       </li>
       <li v-bind:class="{active: currentTab === 2}">
-        <h2>学习经历</h2>
+        <ExpEditor v-bind:exps="studyExperience" v-bind:labels="{school:'学校',duration:'时间',degree:'学位'}" v-bind:title="`学习经历`"></ExpEditor>
       </li>
       <li v-bind:class="{active: currentTab === 3}">
-        <h2>项目经验</h2>
+        <ExpEditor v-bind:exps="projectExperience" v-bind:labels="{name:'项目名称',content:'项目内容'}" v-bind:title="`项目经验`"></ExpEditor>
       </li>
       <li v-bind:class="{active: currentTab === 4}">
-        <h2>获奖情况</h2>
+        <ExpEditor v-bind:exps="awardExperience" v-bind:labels="{name:'奖励详情'}" v-bind:title="`获奖情况`"></ExpEditor>
       </li>
       <li v-bind:class="{active: currentTab === 5}">
-        <h2>联系方式</h2>
+        <InfoEditor v-bind:info="contacts" v-bind:labels="{qq:'QQ',wechat:'微信',email:'邮箱',phone:'手机号码'}" v-bind:title="`联系方式`"></InfoEditor>
       </li>
     </ol>
   </div>
 </template>
 <script>
-  import ProfileEditor from './ProfileEditor.vue'
-  import WorkExperienceEditor from './WorkExperienceEditor.vue'
+  import InfoEditor from './InfoEditor.vue'
+  import ExpEditor from './ExpEditor.vue'
   export default {
     components: {
-      ProfileEditor,WorkExperienceEditor
+      InfoEditor,ExpEditor
     },
     data() {
       return {
@@ -54,14 +54,23 @@
             company:'',
             content:''
           }
-        ]
+        ],
+        studyExperience: [
+          {school:'',duration:'',degree:''}
+        ],
+        projectExperience: [
+          {name: '',content:''}
+        ],
+        awardExperience: [
+          {name: ''}
+        ],
+        contacts: {
+          qq: '',
+          wechat: '',
+          email:'',
+          phone: ''
+        }
       }
-    },
-    created() {
-      console.log(this.profile);
-      setTimeout(()=>{
-        console.log(this.profile)
-      },5000)
     },
     methods: {
 
