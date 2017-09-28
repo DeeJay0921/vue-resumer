@@ -4,18 +4,23 @@
       VueResumer
     </div>
     <div class="actions">
-      <el-button type="primary">注册</el-button>
-      <el-button>登录</el-button>
 
       <el-button type="primary" v-on:click="preview">预览</el-button>
+
     </div>
   </div>
 </template>
 <script>
+
   export default {
     methods: {
       preview() {
         this.$emit('appListenPreview')
+      }
+    },
+    data(){
+      return {
+
       }
     }
   }
